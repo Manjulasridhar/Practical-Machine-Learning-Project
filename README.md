@@ -1,18 +1,30 @@
 Practical Machine Learning Course - Project
+
 Manjula Sridhar
+
 27th September, 2015
+
 Scripts have been produced and tested on RStudio Version 3.2.1 and Windows 7.
+
 Background
+
 Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: http://groupware.les.inf.puc-rio.br/har (see the section on the Weight Lifting Exercise Dataset).
+
 Data
+
 The training data for this project are available here: [https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv]
 The test data are available here: [https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv]
 The data for this project come from this source: [http://groupware.les.inf.puc-rio.br/har]. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.
+
 Preliminary Work
+
 Initial steps
+
 Initially, seed was set at 687 randomly. 
-Packages such as caret and randomForest, rpart and rpart.plot were downloaded and installed,. 
+Packages such as caret and randomForest, rpart and rpart.plot were downloaded and installed.
+
 Procedure for model
+
 Our outcome variable is classe, a factor variable with 5 levels:
 1.Class A - exactly according to the specification
 2.Class B - throwing the elbows to the front
@@ -21,11 +33,15 @@ Our outcome variable is classe, a factor variable with 5 levels:
 5.Class E - throwing the hips to the front
 Prediction evaluations is based on maximizing the accuracy and minimizing the out-of-sample error. All other available variables after cleaning is used for prediction.
 Two models are tested using decision tree and random forest algorithms. The model with the highest accuracy is chosen as our final model.
+
 Cross-validation
+
 Cross-validation is performed by subsampling our training data set randomly without replacement into 2 subsamples: 
 sampletrain data (75% of the original Training data set) and 
 sampletest data (25%). 
+
 Procedure
+
 Features with missing values are discarded as they are irrelevant. All other features will be kept as relevant variables.
 Algorithms used: Decision tree and random forest algorithms 
 Code and Results
