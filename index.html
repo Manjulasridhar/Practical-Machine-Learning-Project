@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Practical-machine-learning-project by Manjulasridhar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Practical-machine-learning-project</h1>
+      <h2 class="project-tagline">This is a submission of project for Practical Machine Learning</h2>
+      <a href="https://github.com/Manjulasridhar/Practical-Machine-Learning-Project" class="btn">View on GitHub</a>
+      <a href="https://github.com/Manjulasridhar/Practical-Machine-Learning-Project/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Manjulasridhar/Practical-Machine-Learning-Project/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="practical-machine-learning-course---project" class="anchor" href="#practical-machine-learning-course---project" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Practical Machine Learning Course - Project</strong>
+</h1>
+
+<h2>
+<a id="manjula-sridhar" class="anchor" href="#manjula-sridhar" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Manjula Sridhar</strong>
+</h2>
+
+<h2>
+<a id="27th-september-2015" class="anchor" href="#27th-september-2015" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>27th September, 2015</strong>
+</h2>
+
+<p>Scripts have been produced and tested on RStudio Version 3.2.1 and Windows 7.</p>
+
+<h3>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h3>
+
+<p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).</p>
+
+<h3>
+<a id="data" class="anchor" href="#data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data</h3>
+
+<p>The training data for this project are available here: [<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a>]
+The test data are available here: [<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a>]
+The data for this project come from this source: [<a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>]. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.</p>
+
+<h3>
+<a id="preliminary-work" class="anchor" href="#preliminary-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preliminary Work</h3>
+
+<h3>
+<a id="initial-steps" class="anchor" href="#initial-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial steps</h3>
+
+<p>Initially, seed was set at 687 randomly. 
+Packages such as caret and randomForest, rpart and rpart.plot were downloaded and installed,. </p>
+
+<h3>
+<a id="procedure-for-model" class="anchor" href="#procedure-for-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Procedure for model</h3>
+
+<p>Our outcome variable is classe, a factor variable with 5 levels:
+1.Class A - exactly according to the specification
+2.Class B - throwing the elbows to the front
+3.Class C - lifting the dumbbell only halfway
+4.Class D - lowering the dumbbell only halfway
+5.Class E - throwing the hips to the front
+Prediction evaluations is based on maximizing the accuracy and minimizing the out-of-sample error. All other available variables after cleaning is used for prediction.
+Two models are tested using decision tree and random forest algorithms. The model with the highest accuracy is chosen as our final model.
+Cross-validation
+Cross-validation is performed by subsampling our training data set randomly without replacement into 2 subsamples: 
+sampletrain data (75% of the original Training data set) and 
+sampletest data (25%). </p>
+
+<h3>
+<a id="procedure" class="anchor" href="#procedure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Procedure</h3>
+
+<p>Features with missing values are discarded as they are irrelevant. All other features will be kept as relevant variables.
+Algorithms used: Decision tree and random forest algorithms </p>
+
+<h3>
+<a id="code-and-results" class="anchor" href="#code-and-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code and Results</h3>
+
+<h1>
+<a id="install-and-load-required-libraries" class="anchor" href="#install-and-load-required-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>install and load required libraries</h1>
+
+<p>library(caret)
+library(randomForest) 
+library(rpart) 
+library(rpart.plot)</p>
+
+<h1>
+<a id="set-seed" class="anchor" href="#set-seed" aria-hidden="true"><span class="octicon octicon-link"></span></a>set seed</h1>
+
+<p>set.seed(687)</p>
+
+<h1>
+<a id="loading-the-training-data-set-into-my-r-session-replacing-all-missing-with-na" class="anchor" href="#loading-the-training-data-set-into-my-r-session-replacing-all-missing-with-na" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading the training data set into my R session replacing all missing with "NA"</h1>
+
+<p>train &lt;- read.csv("C:/Users/Administrator/Desktop/pml-training.csv", na.strings=c("NA","#DIV/0!", ""))</p>
+
+<h1>
+<a id="loading-the-testing-data-set" class="anchor" href="#loading-the-testing-data-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading the testing data set</h1>
+
+<p>test &lt;- read.csv('C:/Users/Administrator/Desktop/pml-testing.csv', na.strings=c("NA","#DIV/0!", ""))</p>
+
+<h1>
+<a id="delete-columns-with-all-missing-values" class="anchor" href="#delete-columns-with-all-missing-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delete columns with all missing values</h1>
+
+<p>train&lt;-train[,colSums(is.na(train)) == 0]
+test &lt;-test[,colSums(is.na(test)) == 0]</p>
+
+<h1>
+<a id="remove-unnecessary-variables-like-user_name-raw_timestamp_part_1-raw_timestamp_part_2-cvtd_timestamp-new_window-and--num_window" class="anchor" href="#remove-unnecessary-variables-like-user_name-raw_timestamp_part_1-raw_timestamp_part_2-cvtd_timestamp-new_window-and--num_window" aria-hidden="true"><span class="octicon octicon-link"></span></a>remove unnecessary variables like user_name, raw_timestamp_part_1, raw_timestamp_part_,2 cvtd_timestamp, new_window, and  num_window</h1>
+
+<p>train   &lt;-train[,-c(1:7)]
+test &lt;-test[,-c(1:7)]</p>
+
+<p>subsamples &lt;- createDataPartition(y=train$classe, p=0.75, list=FALSE)
+sampletrain&lt;- train[subsamples, ] 
+sampletest &lt;- train[-subsamples, ]</p>
+
+<p>plot(sampletrain$classe, col="green", main="Bar Plot of levels of the variable classe of dataset", xlab="classe levels", ylab="Frequency")</p>
+
+<p>solution1 &lt;- rpart(classe ~ ., data=subTraining, method="class")</p>
+
+<h1>
+<a id="predicting" class="anchor" href="#predicting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicting:</h1>
+
+<p>pred1 &lt;- predict(solution1, sampletest, type = "class")</p>
+
+<h1>
+<a id="plot-of-the-decision-tree" class="anchor" href="#plot-of-the-decision-tree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot of the Decision Tree</h1>
+
+<p>rpart.plot(solution1, main="Classification Tree", extra=102, under=TRUE, faclen=0)</p>
+
+<h1>
+<a id="test-results-on-our-sampletest-data-set" class="anchor" href="#test-results-on-our-sampletest-data-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test results on our sampletest data set:</h1>
+
+<p>confusionMatrix(pred1, sampletest$classe)</p>
+
+<h1>
+<a id="solution-in-random-forest" class="anchor" href="#solution-in-random-forest" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution in random forest</h1>
+
+<p>solution2 &lt;- randomForest(classe ~. , data=subTraining, method="class")</p>
+
+<h1>
+<a id="predicting-1" class="anchor" href="#predicting-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicting:</h1>
+
+<p>pred2 &lt;- predict(solution2, sampletest, type = "class")</p>
+
+<h1>
+<a id="test-results-on-sampletest-data-set" class="anchor" href="#test-results-on-sampletest-data-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test results on sampletest data set:</h1>
+
+<p>confusionMatrix(pred2, sampletest$classe)</p>
+
+<h1>
+<a id="predict-outcome-levels-on-the-original-testing-data-set-using-random-forest-algorithm" class="anchor" href="#predict-outcome-levels-on-the-original-testing-data-set-using-random-forest-algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>predict outcome levels on the original Testing data set using Random Forest algorithm</h1>
+
+<p>final&lt;- predict(solution2, test, type="class")
+final</p>
+
+<h1>
+<a id="write-files" class="anchor" href="#write-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Write files</h1>
+
+<p>file_write = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}</p>
+
+<p>file_write(final)</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Manjulasridhar/Practical-Machine-Learning-Project">Practical-machine-learning-project</a> is maintained by <a href="https://github.com/Manjulasridhar">Manjulasridhar</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
